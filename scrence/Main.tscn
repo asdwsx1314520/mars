@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b13nseiqmcq4j"]
+[gd_scene load_steps=5 format=3 uid="uid://b13nseiqmcq4j"]
 
-[ext_resource type="PackedScene" uid="uid://by7risrl1rnox" path="res://scrence/player.tscn" id="1_c8bod"]
+[ext_resource type="PackedScene" uid="uid://by7risrl1rnox" path="res://scrence/Player.tscn" id="1_c8bod"]
+[ext_resource type="Script" path="res://src/Main.cs" id="1_x8ntq"]
+[ext_resource type="PackedScene" uid="uid://cwjm6gi7qa6o3" path="res://scrence/Mob.tscn" id="2_vkgac"]
 
 [sub_resource type="Curve2D" id="Curve2D_nickg"]
 _data = {
@@ -9,6 +11,8 @@ _data = {
 point_count = 6
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_x8ntq")
+MobScene = ExtResource("2_vkgac")
 
 [node name="Player" parent="." instance=ExtResource("1_c8bod")]
 
@@ -29,3 +33,7 @@ curve = SubResource("Curve2D_nickg")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
 position = Vector2(-0.0846252, 0)
+
+[connection signal="timeout" from="MobTimer" to="." method="OnMobTimerTimeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="OnScoreTimerTimeout"]
+[connection signal="timeout" from="StartTimer" to="." method="OnStartTimerTimeout"]

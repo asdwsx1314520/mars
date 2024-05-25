@@ -1,7 +1,6 @@
 using Godot;
-using System;
 
-public partial class player : Area2D
+public partial class Player : Area2D
 {
 	[Export]
 	public int Speed {get;set;} = 400;
@@ -17,10 +16,8 @@ public partial class player : Area2D
 	{
 		Position = position;
 		Show();
-		GetNode<CollisionShape2D>("CollisionShape2d").Disabled = false;
+		GetNode<CollisionShape2D>("CollisionShape2D").Disabled = false;
 	}
-
-		
 
     public override void _Process(double delta)
     {
